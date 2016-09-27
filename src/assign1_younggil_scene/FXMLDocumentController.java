@@ -85,25 +85,31 @@ public class FXMLDocumentController implements Initializable {
         
         String query = null;
        
-        String qry1 = "select id, firstname, lastName from student inner join CourseStudent \n"
-                + "on student.id = CourseStudent.studentId where CourseStudent.courseId = 'PROG10000'";
+         String qry1 = "select id, firstname, lastName from student inner join CourseStudent \n"
+                + "on student.id = CourseStudent.studentId where CourseStudent.courseId = 'PROG10000'";//'PROG10000'
         String qry2 = "select id, firstname, lastName from student inner join CourseStudent \n"
                 + "on student.id = CourseStudent.studentId where CourseStudent.courseId = 'DBAS20000'";
         String qry3 = "select id, firstname, lastName from student inner join CourseStudent \n"
                 + "on student.id = CourseStudent.studentId where CourseStudent.courseId = 'MATH30000'";
 
-        
+       
             try {
                 if(program.isSelected()){
-                    query = qry1;
+                    students.clear();
+                   query = qry1;
+                  
                     System.out.println("pro is selected");
                 }
                 if (dataBase.isSelected()){
-                    query = qry2;
+                    students.clear();
+                   query = qry2;
+                  
                      System.out.println("database is selected");
                 }
                 if (math.isSelected()){
+                    students.clear();
                     query = qry3;
+                  
                      System.out.println("math is selected");
                 }
               ResultSet rs = jdbc.query(query);
