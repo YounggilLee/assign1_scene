@@ -12,19 +12,19 @@
       <VBox layoutX="328.0" layoutY="16.0" prefHeight="338.0" prefWidth="281.0">
          <children>
             <Label text="Table" />
-            <TableView prefHeight="308.0" prefWidth="281.0">
+            <TableView fx:id="tableStudent" prefHeight="308.0" prefWidth="281.0">
               <columns>
                 <TableColumn id="columnId" fx:id="columnId" prefWidth="75.0" text="ID" />
-                <TableColumn id="columnFirstName" fx:id="columnFirstName" prefWidth="75.0" text="FirstName" />
-                <TableColumn id="columnLastName" fx:id="columnLastName" prefWidth="75.0" text="LastName" />
+                <TableColumn id="columnFirstName" fx:id="columnFirstName" prefWidth="100.0" text="FirstName" />
+                <TableColumn id="columnLastName" fx:id="columnLastName" maxWidth="500.0" minWidth="100.0" prefWidth="70.0" text="LastName" />
               </columns>
             </TableView>
          </children>
       </VBox>
       <VBox layoutX="14.0" layoutY="220.0" prefHeight="132.0" prefWidth="290.0">
          <children>
-            <Label text="Course" />
-            <RadioButton fx:id="p1" mnemonicParsing="false" text="Show Students in PROG10000 Course">
+            <Label text="Courses" />
+            <RadioButton fx:id="program" mnemonicParsing="false" onAction="#handleRadioAction" text="Show Students in PROG10000 Course">
                <padding>
                   <Insets top="10.0" />
                </padding>
@@ -34,11 +34,11 @@
                <toggleGroup>
                   <ToggleGroup fx:id="course" />
                </toggleGroup></RadioButton>
-            <RadioButton fx:id="d2" mnemonicParsing="false" text="Show Students in DBAS20000 Course" toggleGroup="$course">
+            <RadioButton fx:id="dataBase" mnemonicParsing="false" onAction="#handleRadioAction" text="Show Students in DBAS20000 Course" toggleGroup="$course">
                <padding>
                   <Insets top="10.0" />
                </padding></RadioButton>
-            <RadioButton fx:id="m3" mnemonicParsing="false" text="Show Students in MATH30000 Course" toggleGroup="$course">
+            <RadioButton fx:id="math" mnemonicParsing="false" onAction="#handleRadioAction" text="Show Students in MATH30000 Course" toggleGroup="$course">
                <padding>
                   <Insets top="10.0" />
                </padding></RadioButton>
@@ -64,6 +64,6 @@
             <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button fx:id="button" layoutX="114.0" layoutY="171.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="Button" />
+      <Button fx:id="button" layoutX="114.0" layoutY="171.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="Connection" />
     </children>
 </AnchorPane>

@@ -11,19 +11,16 @@ package assign1_younggil_scene;
  */
 import java.sql.*;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class JdbcHelper {
-
-   
 
     Connection conn;
     Statement stmt;
     ResultSet rs;
+    
     int updateCount = 0;
-
-    public JdbcHelper() {
+    
+        public JdbcHelper() {
         conn = null;
         stmt = null;
         rs = null;
@@ -39,7 +36,7 @@ public class JdbcHelper {
             result = true;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            // Logger.getLogger(JdbcHelper.class.getName()).log(Level.SEVERE, null, ex);           
+                    
         }
 
         return result;
@@ -72,12 +69,20 @@ public class JdbcHelper {
         }
     }
 
-    public ResultSet query(String sql) {
-        try {
-           rs = stmt.executeQuery(sql);
+    public ResultSet query(int radioNumber,String sql) {
            
-        } catch (SQLException ex) {
-            // Logger.getLogger(JdbcHelper.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+           // rs = stmt.executeQuery(sql);
+           PreparedStatement ps = conn.prepareStatement(sql);  
+           if (radioNumber == 1)
+               ps.setString(1, "PROG10000"); //firstName
+           else if (radioNumber == 2)
+                ps.setString(1, "DBAS20000"); //firstName
+           else
+               ps.setString(1, "MATH30000"); //firstName
+              rs =  ps.executeQuery();
+        }   catch (SQLException ex) {
+
             System.out.println(ex.getMessage());
         }
 
@@ -86,15 +91,8 @@ public class JdbcHelper {
 
     public int update(String sql) {
         try {
-             PreparedStatement ps = conn.prepareStatement(sql);
-             
-              // set params
-            ps.setInt(1,6); //id
-            ps.setString(2, "Grace "); //firstName
-            ps.setString(3, "Hopper "); //lastName
-                        //execute sql to update db 
-           
-            updateCount = ps.executeUpdate(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
+            updateCount = ps.executeUpdate();
         } catch (SQLException ex) {
             // Logger.getLogger(JdbcHelper.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
@@ -102,19 +100,6 @@ public class JdbcHelper {
         return updateCount;
     }
 
-    public void printResult(ResultSet resultSet) {
-        //Student std = new Student(); 
-        try {
-            while (resultSet.next()) {
 
-               // students.add(new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
-                      
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(JdbcHelper.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-       
-    }
 
 }

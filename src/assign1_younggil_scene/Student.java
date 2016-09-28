@@ -14,44 +14,46 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class Student {
     
-    SimpleStringProperty id = null;
-    SimpleStringProperty firstName = null;
-    SimpleStringProperty lastName = null;
-    
+    //String id;
+    private String id;
+    private String firstName;
+    private String lastName;
+   
     public Student(String id, String firstName, String lastName) {
-      this.id = new SimpleStringProperty(id);
-    this.firstName = new SimpleStringProperty(firstName);
-   this.lastName = new SimpleStringProperty(lastName);
+      this.id = id;
+      this.firstName = firstName;
+      this.lastName = lastName;
     }
 
-    public SimpleStringProperty getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(SimpleStringProperty id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public SimpleStringProperty getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(SimpleStringProperty firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public SimpleStringProperty getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(SimpleStringProperty lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-//    @Override
-//    public String toString() {
-//        return getId() + "\t" + getFirstName() + "\t" + getLastName() +"\t\n";
-//    }  
+    @Override
+    public String toString() {
+        return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + '}';
+    }
+   
     
     
 }
