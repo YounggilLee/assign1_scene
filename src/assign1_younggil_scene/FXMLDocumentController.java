@@ -75,7 +75,7 @@ public class FXMLDocumentController implements Initializable {
              // disconnect jdbc connection
             if (jdbc != null) {
                 jdbc.disconnect();
-            }
+             }
             
             // change button condition to connect
             button.setText("Connect");
@@ -125,19 +125,35 @@ public class FXMLDocumentController implements Initializable {
                 + "on student.id = CourseStudent.studentId where CourseStudent.courseId = ?";
 
         // check the user input
+        // if database is not connected, display alert to the user
         try {
-            
-            if (program.isSelected()) {
+           
+            if (program.isSelected()) {  
+                if(checkConection()){
                 students.clear();
                 radioNumber = 1;
+                }else{
+                      Alert alert = new Alert(Alert.AlertType.INFORMATION, "Database connection first!! ");
+                alert.showAndWait();
+            }
             }
             if (dataBase.isSelected()) {
+                 if(checkConection()){
                 students.clear();
                 radioNumber = 2;
+                 }else{
+                      Alert alert = new Alert(Alert.AlertType.INFORMATION, "Database connection first!! ");
+                alert.showAndWait();
+                }
             }
             if (math.isSelected()) {
+                if(checkConection()){
                 students.clear();
                 radioNumber = 3;
+                 }else{
+                      Alert alert = new Alert(Alert.AlertType.INFORMATION, "Database connection first!! ");
+                alert.showAndWait();
+                }
             }
            
             // store rssult of  the query
@@ -151,7 +167,16 @@ public class FXMLDocumentController implements Initializable {
                 students.add(new Student(id, firstName, lastName));
 
             }
-            // show the data on window table view
+             // diplay ths data on console 
+            System.out.println("========================================");
+            System.out.println("   ID        First Name    Last Name    ");
+            System.out.println("========================================");
+            for (Student std : students) {                
+                System.out.printf("%5s %10s %10s\n", std.getId(), std.getFirstName(), std.getLastName());                
+            }
+            System.out.println("=========================================");
+            
+            // display the data on table view
             tableStudent.setItems(FXCollections.observableArrayList(students));
             columnId.setCellValueFactory(new PropertyValueFactory<Student, String>("id"));
             columnFirstName.setCellValueFactory(new PropertyValueFactory<Student, String>("firstName"));
@@ -175,6 +200,14 @@ public class FXMLDocumentController implements Initializable {
             Platform.exit();
         });
     }
+ 
+// check current statement of jdbc connection   
+ public boolean checkConection() throws SQLException {
+  
+     boolean check = jdbc.getConnection().isValid(0);
+     
+     return check;
+ }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
