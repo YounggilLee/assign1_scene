@@ -67,6 +67,4 @@ VALUES
 ('MATH30000', '000000006');
 
 
-   -- select id, firstname, lastName from studentinner join CourseStudent 
-  --  on student.id = CourseStudent.studentId where CourseStudent.courseId = 'PROG10000';
 

@@ -1,7 +1,5 @@
 package assign1_younggil_scene;
 
-import javafx.beans.property.SimpleStringProperty;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,17 +12,18 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class Student {
     
-    //String id;
+    //instance values
     private String id;
     private String firstName;
     private String lastName;
    
+    //ctor arguments
     public Student(String id, String firstName, String lastName) {
       this.id = id;
       this.firstName = firstName;
       this.lastName = lastName;
     }
-
+    //getters and setters
     public String getId() {
         return id;
     }

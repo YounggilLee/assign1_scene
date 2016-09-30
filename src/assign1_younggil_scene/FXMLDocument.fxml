@@ -59,11 +59,11 @@
             <Label prefHeight="17.0" prefWidth="32.0" text="Url" />
             <Label text="User" GridPane.rowIndex="1" />
             <Label text="Password" GridPane.rowIndex="2" />
-            <TextField fx:id="url" GridPane.columnIndex="1" />
+            <TextField fx:id="turl" GridPane.columnIndex="1" />
             <TextField fx:id="user" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button fx:id="button" layoutX="114.0" layoutY="171.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="Connection" />
+      <Button fx:id="button" layoutX="114.0" layoutY="171.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="Connect" />
     </children>
 </AnchorPane>
