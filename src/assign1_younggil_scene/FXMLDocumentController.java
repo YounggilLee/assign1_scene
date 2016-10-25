@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ejd.JdbcHelper;
+import java.util.ArrayList;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
@@ -123,7 +124,12 @@ public class FXMLDocumentController implements Initializable {
         // query to get data from database
         String query = "select id, firstname, lastName from student inner join CourseStudent \n"
                 + "on student.id = CourseStudent.studentId where CourseStudent.courseId = ?";
-
+        
+        String qry1 = "PROG10000";
+        String qry2 = "DBAS20000";
+        String qry3 = "MATH30000";
+        ArrayList<Object> prams = new ArrayList<Object>();
+        
         // check the user input
         // if database is not connected, display alert to the user
         try {
@@ -131,7 +137,7 @@ public class FXMLDocumentController implements Initializable {
             if (program.isSelected()) {  
                 if(checkConection()){
                 students.clear();
-                radioNumber = 1;
+                prams.add(qry1);
                 }else{
                       Alert alert = new Alert(Alert.AlertType.INFORMATION, "Database connection first!! ");
                 alert.showAndWait();
@@ -140,7 +146,7 @@ public class FXMLDocumentController implements Initializable {
             if (dataBase.isSelected()) {
                  if(checkConection()){
                 students.clear();
-                radioNumber = 2;
+                 prams.add(qry2);
                  }else{
                       Alert alert = new Alert(Alert.AlertType.INFORMATION, "Database connection first!! ");
                 alert.showAndWait();
@@ -149,7 +155,7 @@ public class FXMLDocumentController implements Initializable {
             if (math.isSelected()) {
                 if(checkConection()){
                 students.clear();
-                radioNumber = 3;
+                prams.add(qry3);
                  }else{
                       Alert alert = new Alert(Alert.AlertType.INFORMATION, "Database connection first!! ");
                 alert.showAndWait();
@@ -157,7 +163,7 @@ public class FXMLDocumentController implements Initializable {
             }
            
             // store rssult of  the query
-            ResultSet rs = jdbc.query(radioNumber, query);
+            ResultSet rs = jdbc.query(query, prams);
             
             //put data to stduents arraylist
             while (rs.next()) {
